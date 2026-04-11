@@ -42,6 +42,9 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
     // if clear is true then clear the parentElement
 
   }
+
+  // add check for tmdb api and make the datasource into the results key list
+
   const htmlStrings = list.map(templateFn)
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
