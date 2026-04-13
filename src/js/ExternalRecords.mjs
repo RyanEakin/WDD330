@@ -1,7 +1,7 @@
 import { setLocalStorage } from "./utils.mjs";
 
-const movieURL = import.meta.env.VITE_TMDBURL;
-const showURL = import.meta.env.VITE_TVMAZEURL;
+const movieURL = "https://api.themoviedb.org/3/";
+const showURL = "https://api.tvmaze.com/shows";
 
 const keyOne = import.meta.env.VITE_TMDBKEY;
 const keyTwo = import.meta.env.VITE_TVMAZEKEY;
@@ -46,7 +46,7 @@ export default class ExternalRecords {
             })
                 .then(convertToJson)
                 .then((data) => data)
-            setLocalStorage("tmdb_request", cache);
+            setLocalStorage("tmdb_request", cache.results);
             return cache;
         }
         else {
