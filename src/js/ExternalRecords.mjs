@@ -28,13 +28,13 @@ export default class ExternalRecords {
             url = movieURL;
             APIkey = keyOne;
             if (section === "popular") {
-                field = "movie/popular?language=en-US&region=US";
+                field = "movie/popular?region=US&language=en-US";
             }
             else if (section === "now_playing") {
-                field = "movie/now_playing?language=en-US&region=US";
+                field = "movie/now_playing?region=US&language=en-US";
             }
             else {
-                field = "discover/movie?language=en-US";
+                field = "discover/movie?region=US&language=en-US";
             }
             cache = await fetch(`${url}${field}`, {
                 headers: {

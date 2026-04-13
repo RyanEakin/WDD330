@@ -8,13 +8,11 @@ LoadHeaderFooter();
 console.log(await marathon.getMediaData("movie", "popular", ""))
 console.log(await marathon.getMediaData("", "?page=", "1"))
 
-//const tvShow = await marathon.getMediaData("", "?page=", "1");
-//const tvRequest = getLocalStorage("tvmaze_request");
+const tvRequest = getLocalStorage("tvmaze_request");
 
-const MovieId = await marathon.getMediaData("movie", "", "");
 const MovieRequest = getLocalStorage("tmdb_request");
 
 const category = ids("movie");
 
-const mediaL = new Recommendations("", "", "1", MovieRequest[0], category);
+const mediaL = new Recommendations(category); // made it simplier, because... renderList is the ONLY function that needs datasource
 mediaL.renderList(MovieRequest);

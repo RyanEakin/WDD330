@@ -87,26 +87,6 @@ footer {
   color: var(--light-grey);
 }
 
-.details-glance {
-  display: flex;
-  flex-direction: column;
-  background-color: #012e5c;
-  width: 50%;
-
-  &>div {
-    display: flex;
-    flex-direction: row;
-    margin: 2% 25%;
-  }
-
-  &>p {
-    margin: 2% 25%;
-    text-align: left;
-    width: fit-content;
-    background-color: #003b75;
-  }
-}
-
 /*details declarations*/
 
 .attributions {
@@ -144,5 +124,30 @@ footer {
 }
 
 /*index declarations*/
+
+#details-glance {
+  display: flex;
+  flex-direction: column;
+  background-color: #012e5c;
+  width: 50%;
+
+  &>div {
+    display: flex;
+    flex-direction: row;
+    margin: 2% 25%;
+  }
+
+  &>p {
+    margin: 2% 25%;
+    text-align: left;
+    width: fit-content;
+    background-color: #003b75;
+  }
+
+}
+
+#title {
+  font-weight: 600;
+}
 
 /*ID Declarations end here*/
