@@ -22,6 +22,7 @@ export default class ExternalRecords {
         let field = "";
         let APIkey = "";
         let cache = "";
+        let cache_key = "";
 
 
         if (source === "movie") {
@@ -29,14 +30,17 @@ export default class ExternalRecords {
             APIkey = keyOne;
             if (section === "popular") {
                 field = "movie/popular?region=US&language=en-US";
+                cache_key = "tmdb_pop_request"
             }
             else if (section === "now_playing") {
                 field = "movie/now_playing?region=US&language=en-US";
+                cache_key = "tmdb_play_request"
             }
             else {
-                field = "discover/movie?region=US&language=en-US";
+                field = "discover/movie?region=US&language=en-US&page=2&adult=false";
+                cache_key = "tmdb_request";
             }
-            cache = await fetch(`${url}${field}`, {
+            cache = await fetch(`${url}${field}${id}`, {
                 headers: {
                     //apparently this causes a Cross Origin Request Sharing preflight to occur 
                     // and causes it to be rejected by tvmaze's API due to it handling ONLY simple fetches
@@ -46,7 +50,7 @@ export default class ExternalRecords {
             })
                 .then(convertToJson)
                 .then((data) => data)
-            setLocalStorage("tmdb_request", cache.results);
+            setLocalStorage(cache_key, cache.results);
             return cache;
         }
         else {
@@ -68,9 +72,3 @@ export default class ExternalRecords {
 
 
 }
-
-//    async getData(category) {
-//        return await fetch(`${ movieURL } products / search / ${ category } `) // fetches from API, category data
-//            .then(convertToJson) // converts API data to Json
-//            .then((data) => data.Result); // this returns data.Result instead of data alone.
-//    }

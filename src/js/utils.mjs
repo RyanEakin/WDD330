@@ -54,7 +54,8 @@ export function renderWithTemplate(template, parentElement, data, callback) {
     callback(data); // this executes the function in 'callback' parameter with the parameter of data
 
   }
-  parentElement.innerHTML = `${template}`; // this adds the  template to the selected element in the webpage
+  parentElement.innerHTML = `${template}`; // this adds the template to the selected element in the webpage
+
 }
 
 export async function loadTemplate(fPath) {

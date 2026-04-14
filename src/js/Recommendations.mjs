@@ -1,4 +1,4 @@
-import { getParam, renderListWithTemplate } from "./utils.mjs";
+import { getLocalStorage, getParam, renderListWithTemplate } from "./utils.mjs";
 
 function mediaDisplay(data) {
     let htmlContent = "";
@@ -24,7 +24,7 @@ function detailsDisplay(data) {
         htmlContent = `          <div>
             <img src="${data.image.medium}" alt="${data.name}">
             <div>
-              <p id="title">${data.name}</p>
+              <p id="MovieTitle">${data.name}</p>
               <button class="add-movie">Add Media</button>
               <div class="rating-type">
                 <p>where the stars and ratings from fans and critics are</p>
@@ -59,6 +59,8 @@ export default class Recommendations {
     }
 
     renderList(productList) {
+        let listOfMedia = [];
+        let retrievalList = [];
 
         //console.log(window.location.pathname.startsWith("/details.html"));
 
@@ -66,7 +68,6 @@ export default class Recommendations {
             const Id = parseInt(getParam("id"));
             //console.log(Id) // used to figure out if it brings an int or string
 
-            const data = productList[0];
             productList.forEach(data => {
                 //console.log(data.id) // had to see if the id was actually being displayed properly
 
@@ -85,11 +86,25 @@ export default class Recommendations {
             renderListWithTemplate(detailsDisplay, this.listElement, productList);
             // this uses the function from utils to get the template cards generated
         } else {
+            let k = 0;
+            for (let i = 0; i < 8; i++) {
+                let watchList;
+                Math.random() < 0.5 ? watchList = productList : watchList = getLocalStorage("tvmaze_request");
 
-            productList = productList.slice(0, 7);
+                k = Math.floor(Math.random() * watchList.length) + 1;
+                console.log(watchList)
+                if (!listOfMedia.includes(k)) {
+                    listOfMedia = watchList.slice(k, k + 1);
+                    retrievalList.push(k);
+                }
+                else {
+                    return
+                }
 
-            renderListWithTemplate(mediaDisplay, this.listElement, productList);
-            // this uses the function from utils to get the template cards generated
+
+                renderListWithTemplate(mediaDisplay, this.listElement, listOfMedia);
+                // this uses the function from utils to get the template cards generated
+            }
         }
 
 
