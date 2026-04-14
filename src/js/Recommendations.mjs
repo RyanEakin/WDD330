@@ -1,4 +1,4 @@
-import { getLocalStorage, getParam, renderListWithTemplate } from "./utils.mjs";
+import { ids, getLocalStorage, getParam, renderListWithTemplate } from "./utils.mjs";
 
 function mediaDisplay(data) {
     let htmlContent = "";
@@ -132,11 +132,17 @@ export default class Recommendations {
 
             renderListWithTemplate(detailsDisplay, this.listElement, productList);
             // this uses the function from utils to get the template cards generated
+        } else if (this.listElement === ids("now_playing")) {
+            productList = productList.slice(0, 7);
+
+            renderListWithTemplate(mediaDisplay, this.listElement, productList);
+
         } else {
 
             let k = 0;
             while (retrievalList.length < 7) {
                 let watchList;
+
                 Math.random() < 0.5 ? watchList = productList : watchList = getLocalStorage("tvmaze_request");
 
                 k = Math.floor(Math.random() * watchList.length);
@@ -152,6 +158,7 @@ export default class Recommendations {
 
 
             }
+
         }
 
 
