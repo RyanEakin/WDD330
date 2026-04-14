@@ -68,15 +68,62 @@ export default class Recommendations {
             const Id = parseInt(getParam("id"));
             //console.log(Id) // used to figure out if it brings an int or string
 
-            productList.forEach(data => {
-                //console.log(data.id) // had to see if the id was actually being displayed properly
+            const tvMazes = getLocalStorage("tvmaze_request");
+            const mediaIdDiscoverList = getLocalStorage("tmdb_request");
+            const mediaIdPlayList = getLocalStorage("tmdb_play_request");
+            const mediaIdPopList = getLocalStorage("tmdb_pop_request");
+            // requests from the local storage cache
+
+            let tvIdList = [];
+            let mediaIdList = [];
+            // the two lists that will contain the id that is looked for
+
+            tvMazes.forEach(element => {
+                tvIdList.push(element.id);
+                //console.log(tvIdList)
+            });
+
+            mediaIdDiscoverList.forEach(element => {
+                mediaIdList.push(element);
+                //console.log(tvIdList)
+            });
+            mediaIdPlayList.forEach(element => {
+                mediaIdList.push(element);
+                //console.log(tvIdList)
+            });
+            mediaIdPopList.forEach(element => {
+                mediaIdList.push(element);
+                //console.log(tvIdList)
+            });
+
+
+
+            //console.log(tvIdList);
+
+            mediaIdList.forEach(data => {
+                console.log(data.id) // had to see if the id was actually being displayed properly
 
                 if (data.id === Id) {
-                    //console.log("found IT!") // this took a while to figure out, though I succeeded!
-                    const idx = productList.indexOf(data);
+                    console.log("found IT!") // this took a while to figure out, though I succeeded!
+                    const idx = mediaIdList.indexOf(data);
                     console.log(idx)
 
-                    productList = productList.slice(idx, idx + 1);
+                    productList = mediaIdList.slice(idx, idx + 1);
+                    // this gets the index of the movie by id 
+                    // and then it slices it out of the productList array
+                }
+
+            });
+
+            tvMazes.forEach(data => {
+                console.log(data.id) // had to see if the id was actually being displayed properly
+
+                if (data.id === Id) {
+                    console.log("found IT!") // this took a while to figure out, though I succeeded!
+                    const idx = tvMazes.indexOf(data);
+                    console.log(idx)
+
+                    productList = tvMazes.slice(idx, idx + 1);
                     // this gets the index of the movie by id 
                     // and then it slices it out of the productList array
                 }
@@ -86,24 +133,24 @@ export default class Recommendations {
             renderListWithTemplate(detailsDisplay, this.listElement, productList);
             // this uses the function from utils to get the template cards generated
         } else {
+
             let k = 0;
-            for (let i = 0; i < 8; i++) {
+            while (retrievalList.length < 7) {
                 let watchList;
                 Math.random() < 0.5 ? watchList = productList : watchList = getLocalStorage("tvmaze_request");
 
-                k = Math.floor(Math.random() * watchList.length) + 1;
-                console.log(watchList)
-                if (!listOfMedia.includes(k)) {
+                k = Math.floor(Math.random() * watchList.length);
+                //console.log(watchList)
+
+                if (!retrievalList.includes(k)) {
                     listOfMedia = watchList.slice(k, k + 1);
                     retrievalList.push(k);
-                }
-                else {
-                    return
+
+                    renderListWithTemplate(mediaDisplay, this.listElement, listOfMedia);
+                    // this uses the function from utils to get the template cards generated
                 }
 
 
-                renderListWithTemplate(mediaDisplay, this.listElement, listOfMedia);
-                // this uses the function from utils to get the template cards generated
             }
         }
 

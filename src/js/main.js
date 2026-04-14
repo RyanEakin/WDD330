@@ -7,7 +7,7 @@ const marathon = new ExternalRecords();
 LoadHeaderFooter();
 //console.log(await marathon.getMediaData("movie", "", ""))
 //console.log(await marathon.getMediaData("", "?page=", "1"))
-marathon.getMediaData("movie", "", "1");
+marathon.getMediaData("movie", "", "");
 marathon.getMediaData("movie", "popular", "");
 marathon.getMediaData("movie", "now_playing", "");
 
