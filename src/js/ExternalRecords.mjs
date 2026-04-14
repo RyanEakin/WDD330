@@ -29,15 +29,15 @@ export default class ExternalRecords {
             url = movieURL;
             APIkey = keyOne;
             if (section === "popular") {
-                field = "movie/popular?region=US&language=en-US";
+                field = "movie/popular?region=US&language=en-US"; // endpoint url
                 cache_key = "tmdb_pop_request"
             }
             else if (section === "now_playing") {
-                field = "movie/now_playing?region=US&language=en-US";
+                field = "movie/now_playing?region=US&language=en-US"; // endpoint url
                 cache_key = "tmdb_play_request"
             }
             else {
-                field = "discover/movie?region=US&language=en-US&page=2&adult=false";
+                field = "discover/movie?region=US&language=en-US&page=2&adult=false"; // endpoint url
                 cache_key = "tmdb_request";
             }
             cache = await fetch(`${url}${field}${id}`, {
