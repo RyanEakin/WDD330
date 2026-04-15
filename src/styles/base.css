@@ -59,9 +59,6 @@ footer {
 
 /*Class Declarations start here*/
 
-
-
-
 /*media list declarations*/
 .media-list {
   display: flex;
@@ -85,9 +82,6 @@ footer {
 
 /*media list declarations*/
 
-
-
-
 /*details declarations*/
 
 .details-card {
@@ -105,12 +99,7 @@ footer {
 
 /*Class Declarations end here*/
 
-
-
-
 /*ID Declarations start here*/
-
-
 
 /*index declarations*/
 #movie,
@@ -127,27 +116,24 @@ footer {
 
 /*index declarations*/
 
-
-
-
 #details-glance {
   display: flex;
   flex-direction: column;
   background-color: #012e5c;
   width: 50%;
 
-  &>div {
+  & > div {
     display: flex;
     flex-direction: row;
     margin: 2% 25%;
   }
 
-  & div>div {
+  & div > div {
     margin-left: 5%;
     width: 80%;
   }
 
-  &>p {
+  & > p {
     margin: 2% 25%;
     text-align: left;
     width: fit-content;
@@ -173,7 +159,7 @@ footer {
   align-items: center;
   margin-bottom: 1%;
 
-  &>p {
+  & > p {
     border: 10px solid #003b75;
     align-items: center;
     width: 50%;
@@ -181,29 +167,27 @@ footer {
     color: var(--light-grey);
   }
 
-  &>div {
+  & > div {
     display: flex;
     flex-direction: column;
     background-color: #003b75;
     width: 50%;
   }
-
-
 }
 
 #commented {
-  background-color: antiquewhite;
-  color: #141f38;
+  background-color: #141f38;
   margin: 2%;
   height: 350px;
   overflow-y: scroll;
 
-  &>p {
-    background-color: #ffdaa9;
-    border-radius: 5%;
-    margin: 0% 5% 5%;
+  & > p {
+    background-color: #003b75;
+    color: #d0d0d0;
+    border-radius: 15px;
+    padding: 1%;
+    margin: 1% 5% 5%;
   }
-
 }
 
 #commenterName {

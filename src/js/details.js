@@ -1,8 +1,8 @@
 import {
-    LoadHeaderFooter,
-    sanitizeData,
-    getLocalStorage,
-    ids,
+  LoadHeaderFooter,
+  sanitizeData,
+  getLocalStorage,
+  ids,
 } from "./utils.mjs";
 import RatingSystem from "./RatingsSystem.mjs";
 
