@@ -35,7 +35,7 @@ export default class Recommendations {
         } else {
 
             let k = 0;
-            let watchList = productList;
+            let watchList = [];
             while (retrievalList.length < 7) {
 
 

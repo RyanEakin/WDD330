@@ -9,7 +9,10 @@ export default class RatingSystem {
 
     renderDetails(productList) {
 
-        //this.testComment()// this function has been so confusing to handle due to the LocalStorage key NEEDING to be an empty array and nothing else
+        if (!getLocalStorage("comments-section-list")) {
+            console.log("initiating test")
+            this.testComment()// this function has been so confusing to handle due to the LocalStorage key NEEDING to be an empty array and nothing else
+        }
 
         const Id = parseInt(getParam("id"));
         //console.log(Id) // used to figure out if it brings an int or string
@@ -77,8 +80,11 @@ export default class RatingSystem {
         });
 
         renderListWithTemplate(this.detailsDisplay, this.listElement, productList);
-        renderListWithTemplate(this.displayComments, ids("commented"), getLocalStorage("comments-section-list"), "beforeend");
-        // this uses the function from utils to get the template cards generated
+
+        if (getLocalStorage("comments-section-list")) {
+            renderListWithTemplate(this.displayComments, ids("commented"), getLocalStorage("comments-section-list"), "beforeend");
+            // this uses the function from utils to get the template cards generated
+        }
     }
 
 
@@ -245,6 +251,8 @@ export default class RatingSystem {
         setLocalStorage("comments-section-list", comments) // for the purposes of testing
         this.renderDetails();
     }
+
+
     testComment() {
         let comments = []; // set the variable to a null list
         setLocalStorage("comments-section-list", comments) // set localStorage to null
