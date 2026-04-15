@@ -1,4 +1,4 @@
-import { getParam, getLocalStorage, renderListWithTemplate, ids, setLocalStorage } from "./utils.mjs";
+import { getParam, getLocalStorage, renderListWithTemplate, ids, setLocalStorage, qs } from "./utils.mjs";
 
 export default class RatingSystem {
     constructor(listElement) {
@@ -9,7 +9,7 @@ export default class RatingSystem {
 
     renderDetails(productList) {
 
-        this.postComment()// this function has been so confusing to handle due to the LocalStorage key NEEDING to be an empty array and nothing else
+        //this.testComment()// this function has been so confusing to handle due to the LocalStorage key NEEDING to be an empty array and nothing else
 
         const Id = parseInt(getParam("id"));
         //console.log(Id) // used to figure out if it brings an int or string
@@ -129,6 +129,50 @@ export default class RatingSystem {
 
     displayComments(data) {
 
+        window.addEventListener('pageshow', () => {
+            ids("none").checked = true;
+            ids("commentText").value = ""
+            ids("commenterName").value = ""
+        });
+
+        // code to set rating star images
+        ids("bah").addEventListener("click", () => {
+            qs(".starRate-1").src = "/images/star-solid-full.svg";
+            qs(".starRate-2").src = "/images/star-regular-full.svg";
+            qs(".starRate-3").src = "/images/star-regular-full.svg";
+            qs(".starRate-4").src = "/images/star-regular-full.svg";
+            qs(".starRate-5").src = "/images/star-regular-full.svg";
+        })
+        ids("meh").addEventListener("click", () => {
+            qs(".starRate-1").src = "/images/star-solid-full.svg";
+            qs(".starRate-2").src = "/images/star-solid-full.svg";
+            qs(".starRate-3").src = "/images/star-regular-full.svg";
+            qs(".starRate-4").src = "/images/star-regular-full.svg";
+            qs(".starRate-5").src = "/images/star-regular-full.svg";
+        })
+        ids("decent").addEventListener("click", () => {
+            qs(".starRate-1").src = "/images/star-solid-full.svg";
+            qs(".starRate-2").src = "/images/star-solid-full.svg";
+            qs(".starRate-3").src = "/images/star-solid-full.svg";
+            qs(".starRate-4").src = "/images/star-regular-full.svg";
+            qs(".starRate-5").src = "/images/star-regular-full.svg";
+        })
+        ids("good").addEventListener("click", () => {
+            qs(".starRate-1").src = "/images/star-solid-full.svg";
+            qs(".starRate-2").src = "/images/star-solid-full.svg";
+            qs(".starRate-3").src = "/images/star-solid-full.svg";
+            qs(".starRate-4").src = "/images/star-solid-full.svg";
+            qs(".starRate-5").src = "/images/star-regular-full.svg";
+        })
+        ids("great").addEventListener("click", () => {
+            qs(".starRate-1").src = "/images/star-solid-full.svg";
+            qs(".starRate-2").src = "/images/star-solid-full.svg";
+            qs(".starRate-3").src = "/images/star-solid-full.svg";
+            qs(".starRate-4").src = "/images/star-solid-full.svg";
+            qs(".starRate-5").src = "/images/star-solid-full.svg";
+        })
+
+
         //console.log(data); // used to figure out what was coming through the data variable
 
         let star_value = "";
@@ -164,7 +208,44 @@ export default class RatingSystem {
         return ratingContent;
     }
 
-    postComment() {
+    postComment(user, rating, review) {
+        let r = "";
+
+        switch (rating) {
+            case "bah":
+                r = 1;
+                break;
+            case "meh":
+                r = 2;
+                break;
+            case "decent":
+                r = 3;
+                break;
+            case "good":
+                r = 4;
+                break;
+            case "great":
+                r = 5;
+                break;
+
+            default:
+                r = 0;
+                break;
+        }
+
+        let comment = {
+            "user": `${user}`,
+            "ratingScore": `${r}`,
+            "commentText": `${review}`
+        };
+
+        const comments = getLocalStorage("comments-section-list")
+        comments.push(comment)
+
+        setLocalStorage("comments-section-list", comments) // for the purposes of testing
+        this.renderDetails();
+    }
+    testComment() {
         let comments = []; // set the variable to a null list
         setLocalStorage("comments-section-list", comments) // set localStorage to null
 
@@ -180,9 +261,12 @@ export default class RatingSystem {
 
             setLocalStorage("comments-section-list", comments) // for the purposes of testing
         }
-        return comments;
     }
 
 }
+
+
+
+
 
 

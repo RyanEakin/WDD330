@@ -105,7 +105,8 @@ export function removeAllAlerts() {
 }
 
 export function sanitizeData(dataElement) {
-  const userComment = ids(dataElement);
+  const userComment = ids(dataElement).value;
+  console.log(userComment)
 
   const filter = /(?<!\\)[!@#$%^&*()_+\-={}\[\]|\\:;"'`]/g;
   // filters any special characters so that if matching, they WILL be escaped properly
@@ -115,11 +116,13 @@ export function sanitizeData(dataElement) {
   //const testString_special_two = "()[]{}";
   // used for testing function catching special characters
 
-  if (userComment.textContent.match(filter)) {
+  if (userComment.match(filter)) {
     console.log("sanitizing inputs!...")
+    return userComment;
   }
   else {
     console.log("all clear!");
+    return userComment;
   }
 
 }
