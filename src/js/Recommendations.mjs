@@ -39,7 +39,7 @@ export default class Recommendations {
 
             const tvList = await getLocalStorage("tvmaze_request");
 
-            while (retrievalList.length < 7) {
+            while (retrievalList.length < 8) {
 
                 try {
 
