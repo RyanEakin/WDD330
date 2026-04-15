@@ -36,13 +36,16 @@ export default class Recommendations {
 
             let k = 0;
             let watchList = [];
+
+            const tvList = await getLocalStorage("tvmaze_request");
+
             while (retrievalList.length < 7) {
 
                 try {
 
                     const v = (Math.random() < 0.5)
                         ? watchList = productList
-                        : watchList = await getLocalStorage("tvmaze_request");
+                        : watchList = tvList;
 
                     // this line sets watchList as either the first ? above, or the : above
                     watchList = Array.isArray(v) ? v : (v ? [v] : [])
