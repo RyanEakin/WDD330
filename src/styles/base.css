@@ -50,6 +50,11 @@ button {
   border-radius: 5%;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 input[type="radio"] {
   display: none;
 }
@@ -114,7 +119,7 @@ footer {
   background-color: #003b75;
   color: var(--light-grey);
 
-  & > img {
+  &>img {
     filter: invert();
     background-color: #003b75;
     border-radius: 15px;
@@ -155,18 +160,18 @@ footer {
   background-color: #012e5c;
   width: 50%;
 
-  & > div {
+  &>div {
     display: flex;
     flex-direction: row;
     margin: 2% 25%;
   }
 
-  & div > div {
+  & div>div {
     margin-left: 5%;
     width: 80%;
   }
 
-  & > p {
+  &>p {
     margin: 2% 25%;
     text-align: left;
     width: fit-content;
@@ -198,7 +203,7 @@ footer {
     margin-right: 1%;
   }
 
-  & > p {
+  &>p {
     border: 10px solid #003b75;
     align-items: center;
     width: 50%;
@@ -206,7 +211,7 @@ footer {
     color: var(--light-grey);
   }
 
-  & > div {
+  &>div {
     display: flex;
     flex-direction: column;
     background-color: #003b75;
@@ -225,7 +230,7 @@ footer {
   height: 350px;
   overflow-y: scroll;
 
-  & > p {
+  &>p {
     background-color: #003b75;
     color: #d0d0d0;
     border-radius: 0px 0px 15px 15px;
