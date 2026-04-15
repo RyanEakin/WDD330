@@ -38,9 +38,21 @@ export default class Recommendations {
             let watchList = [];
             while (retrievalList.length < 7) {
 
+                try {
 
-                Math.random() < 0.5 ? watchList = productList : watchList = await getLocalStorage("tvmaze_request");
+                    const v = (Math.random() < 0.5)
+                        ? watchList = productList
+                        : watchList = await getLocalStorage("tvmaze_request");
 
+                    // this line sets watchList as either the first ? above, or the : above
+                    watchList = Array.isArray(v) ? v : (v ? [v] : [])
+                    // then if v isn't an array, it checks to see if it is within an array or if it is empty
+
+                } catch (error) {
+                    console.error(error);
+                    watchList = Array.isArray(productList) ? productList : [];
+                    //this checks if it is an array, then set to productList, else empty
+                }
                 k = Math.floor(Math.random() * watchList.length);
                 //console.log(watchList)
 
