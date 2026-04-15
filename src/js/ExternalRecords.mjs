@@ -3,7 +3,7 @@ import { setLocalStorage } from "./utils.mjs";
 const movieURL = "https://api.themoviedb.org/3/";
 const showURL = "https://api.tvmaze.com/shows";
 
-const keyOne = import.meta.env.TMDBKEY;
+const keyOne = process.env.TMDBKEY;
 
 
 async function convertToJson(res) {
