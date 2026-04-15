@@ -2,9 +2,8 @@ import { LoadHeaderFooter, getLocalStorage, ids, qs } from "./utils.mjs";
 import RatingSystem from "./RatingsSystem.mjs";
 
 const detail = new RatingSystem(ids("details-glance"));
-const movie = await getLocalStorage("tmdb_request");
-const show = await getLocalStorage("tvmaze_request");
-
+const movie = getLocalStorage("tmdb_request");
+const show = getLocalStorage("tvmaze_request");
 
 detail.renderDetails(movie, show);
 

@@ -14,7 +14,7 @@ marathon.getMediaData("movie", "now_playing", "");
 const MovieRequest = getLocalStorage("tmdb_request");
 const MoviePopularRequest = getLocalStorage("tmdb_pop_request");
 const MoviePlayRequest = getLocalStorage("tmdb_play_request");
-const tvList = await getLocalStorage("tvmaze_request");
+const tvList = getLocalStorage("tvmaze_request");
 
 const mediaL = new Recommendations(ids("movie")); // made it simplier, because... renderList is the ONLY function that needs datasource
 mediaL.renderList(MovieRequest, tvList);
