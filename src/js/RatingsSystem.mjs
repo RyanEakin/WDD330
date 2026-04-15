@@ -1,4 +1,4 @@
-import { getParam, getLocalStorage, renderListWithTemplate } from "./utils.mjs";
+import { getParam, getLocalStorage, renderListWithTemplate, ids } from "./utils.mjs";
 
 export default class RatingSystem {
     constructor(listElement) {
@@ -74,6 +74,7 @@ export default class RatingSystem {
         });
 
         renderListWithTemplate(this.detailsDisplay, this.listElement, productList);
+        renderListWithTemplate(this.displayComments, ids("comments-section"), productList, "beforeend");
         // this uses the function from utils to get the template cards generated
     }
 
@@ -121,6 +122,30 @@ export default class RatingSystem {
           </p>`;
         }
         return htmlContent;
+    }
+
+    displayComments(data) {
+        const comments = [];
+
+        comments.forEach(element => {
+            //todo: insert comments into template literal via localStorage usage
+        });
+
+        const ratingContent = `
+        <div class="comment-form">
+            <div id="commented">
+                ${comments}
+                <p>test comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil.</p>
+                <p>test comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil.</p>
+                <p>test comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil.</p>
+                <p>test comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil.</p>
+                <p>test comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil.</p>
+            </div>
+            <input type="text" id="commenterName" placeholder="Your Name">
+            <textarea id="commentText" placeholder="Your Comment"></textarea>
+            <button id="postComment">Post Comment</button>
+        </div>`;
+        return ratingContent;
     }
 
 
