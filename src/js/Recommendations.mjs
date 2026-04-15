@@ -21,7 +21,7 @@ export default class Recommendations {
         this.listElement = listElement; //collects selected HTML element... must use querySelector()
     }
 
-    renderList(productList) {
+    async renderList(productList) {
         let listOfMedia = [];
         let retrievalList = [];
 
@@ -39,7 +39,7 @@ export default class Recommendations {
             while (retrievalList.length < 7) {
 
 
-                Math.random() < 0.5 ? watchList = productList : watchList = getLocalStorage("tvmaze_request");
+                Math.random() < 0.5 ? watchList = productList : watchList = await getLocalStorage("tvmaze_request");
 
                 k = Math.floor(Math.random() * watchList.length);
                 //console.log(watchList)

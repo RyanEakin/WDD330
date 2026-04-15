@@ -7,7 +7,7 @@ export default class RatingSystem {
 
 
 
-    renderDetails(productList) {
+    async renderDetails(productList) {
 
         if (!getLocalStorage("comments-section-list")) {
             console.log("initiating test")
@@ -17,10 +17,10 @@ export default class RatingSystem {
         const Id = parseInt(getParam("id"));
         //console.log(Id) // used to figure out if it brings an int or string
 
-        const tvMazes = getLocalStorage("tvmaze_request");
-        const mediaIdDiscoverList = getLocalStorage("tmdb_request");
-        const mediaIdPlayList = getLocalStorage("tmdb_play_request");
-        const mediaIdPopList = getLocalStorage("tmdb_pop_request");
+        const tvMazes = await getLocalStorage("tvmaze_request");
+        const mediaIdDiscoverList = await getLocalStorage("tmdb_request");
+        const mediaIdPlayList = await getLocalStorage("tmdb_play_request");
+        const mediaIdPopList = await getLocalStorage("tmdb_pop_request");
         // requests from the local storage cache
 
         let tvIdList = [];
