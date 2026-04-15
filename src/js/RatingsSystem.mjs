@@ -1,4 +1,4 @@
-import { getParam, getLocalStorage, renderListWithTemplate, ids } from "./utils.mjs";
+import { getParam, getLocalStorage, renderListWithTemplate, ids, setLocalStorage } from "./utils.mjs";
 
 export default class RatingSystem {
     constructor(listElement) {
@@ -8,6 +8,9 @@ export default class RatingSystem {
 
 
     renderDetails(productList) {
+
+        this.postComment()// this function has been so confusing to handle due to the LocalStorage key NEEDING to be an empty array and nothing else
+
         const Id = parseInt(getParam("id"));
         //console.log(Id) // used to figure out if it brings an int or string
 
@@ -74,7 +77,7 @@ export default class RatingSystem {
         });
 
         renderListWithTemplate(this.detailsDisplay, this.listElement, productList);
-        renderListWithTemplate(this.displayComments, ids("comments-section"), productList, "beforeend");
+        renderListWithTemplate(this.displayComments, ids("commented"), getLocalStorage("comments-section-list"), "beforeend");
         // this uses the function from utils to get the template cards generated
     }
 
@@ -125,33 +128,61 @@ export default class RatingSystem {
     }
 
     displayComments(data) {
-        const comments = [];
 
-        comments.forEach(element => {
-            //todo: insert comments into template literal via localStorage usage
-        });
+        //console.log(data); // used to figure out what was coming through the data variable
+
+        let star_value = "";
+        switch (parseInt(data.ratingScore)) { //check what user rated the media and set up proper star amount
+            case 1:
+                star_value = `<img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star">`;
+                break;
+
+            case 2:
+                star_value = `<img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star">`;
+                break;
+
+            case 3:
+                star_value = `<img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star">`;
+                break;
+
+            case 4:
+                star_value = `<img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-solid-full.svg" alt="star">`;
+                break;
+            case 5:
+                star_value = `<img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-solid-full.svg" alt="star"><img src="/images/star-solid-full.svg" alt="star">`;
+                break;
+
+            default:
+                star_value = `<img src="/images/star-regular-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star"><img src="/images/star-regular-full.svg" alt="star">`;;
+                break;
+        }
 
         const ratingContent = `
-        <div class="comment-form">
-            <div id="commented">
-                ${comments}
-                <p>test comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil.</p>
-                <p>test comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil.</p>
-                <p>test comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil.</p>
-                <p>test comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil.</p>
-                <p>test comment: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil.</p>
-            </div>
-            <input type="text" id="commenterName" placeholder="Your Name">
-            <textarea id="commentText" placeholder="Your Comment"></textarea>
-            <button id="postComment">Post Comment</button>
-        </div>`;
+            <div class="userRating" id="${data.ratingScore}">${star_value}</div>
+            <p><img src="/images/user-standin.png" alt="${data.user}"><span id="user">${data.user}</span>: ${data.commentText}</p>
+        `;
         return ratingContent;
     }
 
+    postComment() {
+        let comments = []; // set the variable to a null list
+        setLocalStorage("comments-section-list", comments) // set localStorage to null
 
-    grabRatings() {
-        // todo: for comment system to grab from localStorage where the comments text AND star rating will be
+        for (let i = 0; 4 > i; i++) {
+            let comment = {
+                "user": `user-${i}`,
+                "ratingScore": `${i}`,
+                "commentText": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi optio incidunt ducimus illum officiis aliquid ipsum soluta aliquam laudantium ratione! Expedita illum sunt porro quaerat nam aut veritatis laboriosam! Nihil."
+            };
+
+            const comments = getLocalStorage("comments-section-list")
+            comments.push(comment)
+
+            setLocalStorage("comments-section-list", comments) // for the purposes of testing
+        }
+        return comments;
     }
+
 }
 
 

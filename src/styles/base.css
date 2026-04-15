@@ -91,6 +91,28 @@ footer {
   color: var(--light-grey);
 }
 
+.userRating {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  left: 5%;
+  top: 4%;
+  width: 90%;
+  border-radius: 15px 15px 0px 0px;
+
+  background-color: #003b75;
+  color: var(--light-grey);
+
+  &>img {
+    background-color: #003b75;
+    border-radius: 15px;
+    margin-left: 2%;
+    margin-top: 1%;
+    margin-bottom: -2%;
+  }
+
+}
+
 /*details declarations*/
 
 .attributions {
@@ -122,18 +144,18 @@ footer {
   background-color: #012e5c;
   width: 50%;
 
-  & > div {
+  &>div {
     display: flex;
     flex-direction: row;
     margin: 2% 25%;
   }
 
-  & div > div {
+  & div>div {
     margin-left: 5%;
     width: 80%;
   }
 
-  & > p {
+  &>p {
     margin: 2% 25%;
     text-align: left;
     width: fit-content;
@@ -159,7 +181,13 @@ footer {
   align-items: center;
   margin-bottom: 1%;
 
-  & > p {
+  & img {
+    width: 5%;
+    height: auto;
+    margin-right: 1%;
+  }
+
+  &>p {
     border: 10px solid #003b75;
     align-items: center;
     width: 50%;
@@ -167,7 +195,7 @@ footer {
     color: var(--light-grey);
   }
 
-  & > div {
+  &>div {
     display: flex;
     flex-direction: column;
     background-color: #003b75;
@@ -175,21 +203,30 @@ footer {
   }
 }
 
+#user {
+  font-size: large;
+  font-weight: 700;
+}
+
+
+
 #commented {
   background-color: #141f38;
   margin: 2%;
   height: 350px;
   overflow-y: scroll;
 
-  & > p {
+  &>p {
     background-color: #003b75;
     color: #d0d0d0;
-    border-radius: 15px;
+    border-radius: 0px 0px 15px 15px;
     padding: 1%;
     margin: 1% 5% 5%;
   }
 }
 
+
+/*input box css*/
 #commenterName {
   width: 30%;
   margin-left: 10%;
@@ -215,6 +252,8 @@ footer {
   width: 50%;
   align-self: center;
 }
+
+/*input box css*/
 
 /*rating System declarations*/
 
