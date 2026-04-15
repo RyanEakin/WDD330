@@ -29,6 +29,11 @@ export default class RatingSystem {
             // requests from the local storage cache
         } catch (error) {
             console.error(error);
+            tvMazes = Array.isArray(productList) ? productList : [];
+            mediaIdDiscoverList = Array.isArray(productList) ? productList : [];
+            mediaIdPlayList = Array.isArray(productList) ? productList : [];
+            mediaIdPopList = Array.isArray(productList) ? productList : [];
+
             console.log("tripped")
         }
 
