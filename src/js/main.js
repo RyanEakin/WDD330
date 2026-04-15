@@ -14,12 +14,13 @@ marathon.getMediaData("movie", "now_playing", "");
 const MovieRequest = getLocalStorage("tmdb_request");
 const MoviePopularRequest = getLocalStorage("tmdb_pop_request");
 const MoviePlayRequest = getLocalStorage("tmdb_play_request");
+const tvList = await getLocalStorage("tvmaze_request");
 
 const mediaL = new Recommendations(ids("movie")); // made it simplier, because... renderList is the ONLY function that needs datasource
-mediaL.renderList(MovieRequest);
+mediaL.renderList(MovieRequest, tvList);
 
 const mediaL_pop = new Recommendations(ids("popular")); // made it simplier, because... renderList is the ONLY function that needs datasource
-mediaL_pop.renderList(MoviePopularRequest);
+mediaL_pop.renderList(MoviePopularRequest, tvList);
 
 const mediaL_play = new Recommendations(ids("now_playing")); // made it simplier, because... renderList is the ONLY function that needs datasource
-mediaL_play.renderList(MoviePlayRequest);
+mediaL_play.renderList(MoviePlayRequest, tvList);

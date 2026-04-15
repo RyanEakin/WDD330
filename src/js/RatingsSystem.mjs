@@ -7,14 +7,13 @@ export default class RatingSystem {
 
 
 
-    async renderDetails(productList) {
+    async renderDetails(productList = [], tvMazes = []) {
 
         if (!getLocalStorage("comments-section-list")) {
             console.log("initiating test")
             this.testComment()// this function has been so confusing to handle due to the LocalStorage key NEEDING to be an empty array and nothing else
         }
 
-        let tvMazes = [];
         let mediaIdDiscoverList = [];
         let mediaIdPlayList = [];
         let mediaIdPopList = [];
@@ -22,7 +21,6 @@ export default class RatingSystem {
         const Id = parseInt(getParam("id"));
         //console.log(Id) // used to figure out if it brings an int or string
         try {
-            tvMazes = await getLocalStorage("tvmaze_request");
             mediaIdDiscoverList = await getLocalStorage("tmdb_request");
             mediaIdPlayList = await getLocalStorage("tmdb_play_request");
             mediaIdPopList = await getLocalStorage("tmdb_pop_request");

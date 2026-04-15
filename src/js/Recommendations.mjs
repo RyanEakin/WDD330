@@ -21,7 +21,7 @@ export default class Recommendations {
         this.listElement = listElement; //collects selected HTML element... must use querySelector()
     }
 
-    async renderList(productList) {
+    async renderList(productList, tvList) {
         let listOfMedia = [];
         let retrievalList = [];
 
@@ -37,9 +37,7 @@ export default class Recommendations {
             let k = 0;
             let watchList = [];
 
-            const tvList = await getLocalStorage("tvmaze_request");
-
-            while (retrievalList.length < 7) {
+            while (retrievalList.length <= 7) {
 
                 try {
 
@@ -65,6 +63,7 @@ export default class Recommendations {
                     retrievalList.push(k);
 
                     renderListWithTemplate(mediaDisplay, this.listElement, listOfMedia);
+                    console.log(listOfMedia)
                     // this uses the function from utils to get the template cards generated
                 }
 

@@ -2,7 +2,11 @@ import { LoadHeaderFooter, getLocalStorage, ids, qs } from "./utils.mjs";
 import RatingSystem from "./RatingsSystem.mjs";
 
 const detail = new RatingSystem(ids("details-glance"));
-detail.renderDetails(getLocalStorage("tmdb_request"));
+const movie = await getLocalStorage("tmdb_request");
+const show = await getLocalStorage("tvmaze_request");
+
+
+detail.renderDetails(movie, show);
 
 // code to post review
 ids("review_form").addEventListener("submit", (e) => {
