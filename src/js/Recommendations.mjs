@@ -39,7 +39,7 @@ export default class Recommendations {
 
             const tvList = await getLocalStorage("tvmaze_request");
 
-            while (retrievalList.length < 8) {
+            while (retrievalList.length < 7) {
 
                 try {
 
@@ -55,6 +55,7 @@ export default class Recommendations {
                     console.error(error);
                     watchList = Array.isArray(productList) ? productList : [];
                     //this checks if it is an array, then set to productList, else empty
+                    console.log("tripped")
                 }
                 k = Math.floor(Math.random() * watchList.length);
                 //console.log(watchList)

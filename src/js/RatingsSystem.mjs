@@ -14,14 +14,23 @@ export default class RatingSystem {
             this.testComment()// this function has been so confusing to handle due to the LocalStorage key NEEDING to be an empty array and nothing else
         }
 
+        let tvMazes = [];
+        let mediaIdDiscoverList = [];
+        let mediaIdPlayList = [];
+        let mediaIdPopList = [];
+
         const Id = parseInt(getParam("id"));
         //console.log(Id) // used to figure out if it brings an int or string
-
-        const tvMazes = await getLocalStorage("tvmaze_request");
-        const mediaIdDiscoverList = await getLocalStorage("tmdb_request");
-        const mediaIdPlayList = await getLocalStorage("tmdb_play_request");
-        const mediaIdPopList = await getLocalStorage("tmdb_pop_request");
-        // requests from the local storage cache
+        try {
+            tvMazes = await getLocalStorage("tvmaze_request");
+            mediaIdDiscoverList = await getLocalStorage("tmdb_request");
+            mediaIdPlayList = await getLocalStorage("tmdb_play_request");
+            mediaIdPopList = await getLocalStorage("tmdb_pop_request");
+            // requests from the local storage cache
+        } catch (error) {
+            console.error(error);
+            console.log("tripped")
+        }
 
         let tvIdList = [];
         let mediaIdList = [];
