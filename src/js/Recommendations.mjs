@@ -36,7 +36,7 @@ export default class Recommendations {
 
             let k = 0;
             while (retrievalList.length < 7) {
-                let watchList = "";
+                let watchList = [];
 
                 Math.random() < 0.5 ? watchList = productList : watchList = getLocalStorage("tvmaze_request");
 
