@@ -54,7 +54,6 @@ export default class ExternalRecords {
         }
         else {
             url = showURL;
-            APIkey = keyTwo;
 
             if (section) {
                 field = "?page=";

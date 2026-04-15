@@ -17,7 +17,64 @@
         </div>
       </div>
       <div id="comments-section">
-        <p>where the comments and the ability to rate movies will be</p>
+        <h2>Comments Section</h2>
+        <div class="comment-form">
+          <div id="commented"></div>
+          <form id="review_form">
+            <div>
+              <input
+                type="text"
+                id="commenterName"
+                placeholder="user"
+                required
+              />
+              <label><input type="radio" name="star" id="none" /></label>
+              <label
+                ><input type="radio" name="star" id="bah" /><img
+                  class="starRate-1"
+                  id="bah"
+                  src="/images/star-regular-full.svg"
+                  alt="1-star"
+              /></label>
+              <label
+                ><input type="radio" name="star" id="meh" /><img
+                  class="starRate-2"
+                  id="meh"
+                  src="/images/star-regular-full.svg"
+                  alt="2-star"
+              /></label>
+              <label
+                ><input type="radio" name="star" id="decent" /><img
+                  class="starRate-3"
+                  id="decent"
+                  src="/images/star-regular-full.svg"
+                  alt="3-star"
+              /></label>
+              <label
+                ><input type="radio" name="star" id="good" /><img
+                  class="starRate-4"
+                  id="good"
+                  src="/images/star-regular-full.svg"
+                  alt="4-star"
+              /></label>
+              <label
+                ><input type="radio" name="star" id="great" /><img
+                  class="starRate-5"
+                  id="great"
+                  src="/images/star-regular-full.svg"
+                  alt="5-star"
+              /></label>
+            </div>
+            <textarea
+              id="commentText"
+              placeholder="Your Comment"
+              required
+            ></textarea>
+            <button type="submit" form="review_form" id="postComment">
+              Post Comment
+            </button>
+          </form>
+        </div>
       </div>
     </main>
     <footer id="foot"></footer>
