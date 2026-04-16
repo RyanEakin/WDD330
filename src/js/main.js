@@ -10,7 +10,7 @@ LoadHeaderFooter();
 marathon.getMediaData("movie", "", "");
 marathon.getMediaData("movie", "popular", "");
 marathon.getMediaData("movie", "now_playing", "");
-marathon.getMediaData("", "?page=", "1")
+marathon.getMediaData("", "?page=", "1");
 
 const MovieRequest = getLocalStorage("tmdb_request");
 const MoviePopularRequest = getLocalStorage("tmdb_pop_request");
