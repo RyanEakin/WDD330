@@ -3,9 +3,8 @@ import RatingSystem from "./RatingsSystem.mjs";
 
 const detail = new RatingSystem(ids("details-glance"));
 const movie = getLocalStorage("tmdb_request");
-const show = getLocalStorage("tvmaze_request");
 
-detail.renderDetails(movie, show);
+detail.renderDetails(movie);
 
 // code to post review
 ids("review_form").addEventListener("submit", (e) => {
