@@ -16,6 +16,12 @@ async function convertToJson(res) {
 
 export default class ExternalRecords {
 
+    async init() {
+        const MovieRequest = await this.getMediaData("movie", "", "");
+        const MoviePlayRequest = await this.getMediaData("movie", "now_playing", "");
+        const MoviePopRequest = await this.getMediaData("movie", "popular", "");
+    }
+
     async getMediaData(source, section, id = "") {
         let url = "";
         let field = "";

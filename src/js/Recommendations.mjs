@@ -26,9 +26,11 @@ export default class Recommendations {
         this.tvList = await getLocalStorage("tvMaze_requests");
     }
 
-    renderList(listElement, productList, tvList) {
+    async renderList(listElement, productList) {
         let listOfMedia = [];
         let retrievalList = [];
+        const marathon = new ExternalRecords();
+        const tvList = await marathon.getMediaData();
 
         if (this.MovieRequest === undefined || null || []) {
             const req = new ExternalRecords();
@@ -79,7 +81,7 @@ export default class Recommendations {
                     retrievalList.push(k);
 
                     renderListWithTemplate(mediaDisplay, listElement, listOfMedia);
-                    console.log(listOfMedia)
+                    // console.log(listOfMedia)
                     // this uses the function from utils to get the template cards generated
                 }
 
