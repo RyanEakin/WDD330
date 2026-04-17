@@ -19,18 +19,6 @@
 }
 
 @media screen and (max-width: 420px) {
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  label img {
-    filter: invert();
-    background-color: #006edd;
-    border-radius: 20px;
-    margin-left: 2%;
-  }
-
   /*Class Declarations start here*/
 
   /*media list declarations*/
@@ -46,65 +34,29 @@
 
   .media-card {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     background-color: #0a7df8;
     color: var(--light-grey);
-    width: 60%;
+    width: 80%;
     margin: 1%;
-  }
 
-  .desc {
-    font-size: xxx-large;
-    align-self: center;
-    margin-left: 1%;
+    & > img {
+      display: flex;
+      align-self: center;
+      width: 80%;
+      margin-top: 2%;
+    }
   }
 
   .delete-item {
     display: flex;
     align-self: center;
     margin: 1%;
-    padding: 12% 4%;
+    padding: 4% 40%;
   }
 
   /*media list declarations*/
-
-  /*details declarations*/
-
-  .details-card {
-    display: flex;
-    justify-content: center;
-    background-color: #003b75;
-    color: var(--light-grey);
-  }
-
-  .userRating {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    left: 5%;
-    top: 4%;
-    width: 90%;
-    border-radius: 15px 15px 0px 0px;
-
-    background-color: #003b75;
-    color: var(--light-grey);
-
-    & > img {
-      filter: invert();
-      background-color: #006edd;
-      border-radius: 15px;
-      margin-left: 2%;
-      margin-top: 1%;
-      margin-bottom: -2%;
-    }
-  }
-
-  /*details declarations*/
-
-  .attributions {
-    width: 25%;
-  }
 
   /*Class Declarations end here*/
 
@@ -148,12 +100,6 @@
     width: 150%;
   }
 
-  #api_rating {
-    background-color: #003b75;
-    padding: 15%;
-    text-align: center;
-  }
-
   /*rating System declarations*/
   #comments-section {
     display: flex;
@@ -168,11 +114,6 @@
     }
   }
 
-  #user {
-    font-size: large;
-    font-weight: 700;
-  }
-
   #commented {
     display: flex;
     flex-direction: column;
@@ -180,44 +121,7 @@
     margin: 2%;
     height: 350px;
     overflow-y: scroll;
-
-    & > p {
-      background-color: #003b75;
-      color: #d0d0d0;
-      border-radius: 0px 0px 15px 15px;
-      padding: 1%;
-      margin: 1% 5% 5%;
-    }
   }
-
-  /*input box css*/
-  #commenterName {
-    width: 30%;
-    margin-left: 10%;
-  }
-
-  #commentText {
-    width: 80%;
-    align-self: center;
-
-    min-height: 130px;
-    max-height: 260px;
-
-    resize: none;
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    font-size: 16px;
-
-    margin-bottom: 1%;
-  }
-
-  #postComment {
-    width: 50%;
-    align-self: center;
-  }
-
-  /*input box css*/
 
   /*rating System declarations*/
 

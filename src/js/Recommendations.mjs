@@ -9,10 +9,10 @@ function mediaDisplay(data) {
     // with tmdb api I need to figure out how to get the values as an array and checked by forEach properly
 
     if (arrayInfo.includes("url") === true) {
-        htmlContent = `<a href="details.html?id=${data.id}"><img src="${data.image.medium}" alt="${data.name}"/></a>`;
+        htmlContent = `<a href="details.html?id=${data.id}"><img id="discover" src="${data.image.medium}" alt="${data.name}"/></a>`;
     }
     else {
-        htmlContent = `<a href="details.html?id=${data.id}"><img src="https://image.tmdb.org/t/p/w185${data.poster_path}" alt="${data.title}"/></a>`;
+        htmlContent = `<a href="details.html?id=${data.id}"><img id="discover" src="https://image.tmdb.org/t/p/w185${data.poster_path}" alt="${data.title}"/></a>`;
     }
     return htmlContent;
 }
