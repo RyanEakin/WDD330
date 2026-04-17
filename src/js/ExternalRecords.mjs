@@ -41,7 +41,7 @@ export default class ExternalRecords {
             }
             cache = await fetch(`${url}${field}${id}`, {
                 headers: {
-                    //apparently this causes a Cross Origin Request Sharing preflight to occur 
+                    // apparently this causes a Cross Origin Request Sharing preflight to occur 
                     // and causes it to be rejected by tvmaze's API due to it handling ONLY simple fetches
                     "Authorization": `Bearer ${APIkey}`,
                     "Content-Type": "application/json"
@@ -66,6 +66,8 @@ export default class ExternalRecords {
             return cache;
         }
     }
+
+
 
 
 

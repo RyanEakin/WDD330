@@ -1,10 +1,15 @@
 import { LoadHeaderFooter, getLocalStorage, ids, qs } from "./utils.mjs";
 import RatingSystem from "./RatingsSystem.mjs";
+import ExternalRecords from "./ExternalRecords.mjs";
+
+const marathon = new ExternalRecords(); // so apparently the TvMaze API is quirky!
+const tvList = await marathon.getMediaData(); // and needs these two lines! why? *shrugs*, just hates local storage for some reason.
 
 const detail = new RatingSystem(ids("details-glance"));
 const movie = getLocalStorage("tmdb_request");
+const show = getLocalStorage("tvmaze_request");
 
-detail.renderDetails(movie);
+detail.renderDetails(movie, show);
 
 // code to post review
 ids("review_form").addEventListener("submit", (e) => {

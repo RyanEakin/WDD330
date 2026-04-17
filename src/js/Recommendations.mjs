@@ -1,3 +1,4 @@
+import ExternalRecords from "./ExternalRecords.mjs";
 import { ids, getLocalStorage, renderListWithTemplate } from "./utils.mjs";
 
 function mediaDisplay(data) {
@@ -17,27 +18,40 @@ function mediaDisplay(data) {
 }
 
 export default class Recommendations {
-    constructor(listElement) {
-        this.listElement = listElement; //collects selected HTML element... must use querySelector()
+
+    async init() {
+        this.MovieRequest = await getLocalStorage("tmdb_request");
+        this.MoviePopularRequest = await getLocalStorage("tmdb_pop_request");
+        this.MoviePlayRequest = await getLocalStorage("tmdb_play_request");
+        this.tvList = await getLocalStorage("tvMaze_requests");
     }
 
-    async renderList(productList, tvList) {
+    renderList(listElement, productList, tvList) {
         let listOfMedia = [];
         let retrievalList = [];
+
+        if (this.MovieRequest === undefined || null || []) {
+            const req = new ExternalRecords();
+            req.getMediaData("movie", "", "");
+        }
+        if (this.tvList === undefined || null || []) {
+            const res = new ExternalRecords();
+            res.getMediaData("", "?page=", "1");
+        }
 
         //console.log(window.location.pathname.startsWith("/details.html"));
 
         if (this.listElement === ids("now_playing")) {
             productList = productList.slice(0, 7);
 
-            renderListWithTemplate(mediaDisplay, this.listElement, productList);
+            renderListWithTemplate(mediaDisplay, listElement, productList);
 
         } else {
 
             let k = 0;
             let watchList = [];
 
-            while (retrievalList.length <= 7) {
+            while (retrievalList.length < 7) {
 
                 try {
 
@@ -48,6 +62,8 @@ export default class Recommendations {
                     // this line sets watchList as either the first ? above, or the : above
                     watchList = Array.isArray(v) ? v : (v ? [v] : [])
                     // then if v isn't an array, it checks to see if it is within an array or if it is empty
+
+
 
                 } catch (error) {
                     console.error(error);
@@ -62,7 +78,7 @@ export default class Recommendations {
                     listOfMedia = watchList.slice(k, k + 1);
                     retrievalList.push(k);
 
-                    renderListWithTemplate(mediaDisplay, this.listElement, listOfMedia);
+                    renderListWithTemplate(mediaDisplay, listElement, listOfMedia);
                     console.log(listOfMedia)
                     // this uses the function from utils to get the template cards generated
                 }
