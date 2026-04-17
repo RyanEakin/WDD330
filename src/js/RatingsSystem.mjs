@@ -1,4 +1,5 @@
 import { getParam, getLocalStorage, renderListWithTemplate, ids, setLocalStorage, qs } from "./utils.mjs";
+import ExternalRecords from "./ExternalRecords.mjs";
 
 export default class RatingSystem {
     constructor(listElement) {
