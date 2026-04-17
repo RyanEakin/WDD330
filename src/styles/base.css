@@ -228,6 +228,23 @@ footer {
     height: auto;
     margin-right: 1%;
   }
+
+  & > p {
+    border: 10px solid #003b75;
+    align-items: center;
+    width: 50%;
+    background-color: #012e5c;
+    color: var(--light-grey);
+  }
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    background-color: #003b75;
+    width: 90%;
+    min-width: 380px;
+    max-width: 708px;
+  }
 }
 
 #user {
