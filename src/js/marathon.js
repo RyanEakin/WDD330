@@ -5,4 +5,4 @@ LoadHeaderFooter();
 
 const med = new MediaCart();
 
-med.renderCartContents()
+med.renderCartContents();

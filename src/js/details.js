@@ -7,7 +7,7 @@ marathon.init(); // and needs these two lines! why? *shrugs*, just hates local s
 
 const detail = new RatingSystem(ids("details-glance"));
 const movie = getLocalStorage("tmdb_request");
-const show = getLocalStorage("tvmaze_request");
+getLocalStorage("tvmaze_request");
 
 detail.renderDetails(movie);
 

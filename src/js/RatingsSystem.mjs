@@ -106,7 +106,7 @@ export default class RatingSystem {
             }
 
             htmlContent = `          <div>
-            <img src="${data.image.medium}" alt="${data.name}">
+            <img id="poster" src="${data.image.medium}" alt="${data.name}">
             <div>
               <p id="MovieTitle">${data.name}</p>
               <button id="addMedia">Add Media</button>
@@ -121,7 +121,7 @@ export default class RatingSystem {
         } else {
 
             htmlContent = `          <div>
-            <img src="https://image.tmdb.org/t/p/w185${data.poster_path}" alt="${data.title}">
+            <img id="poster" src="https://image.tmdb.org/t/p/w185${data.poster_path}" alt="${data.title}">
             <div>
               <p id="MovieTitle">${data.title}</p>
               <button id="addMedia">Add Media</button>
@@ -278,8 +278,13 @@ export default class RatingSystem {
     addProductToCart() {// the parameter above is no longer needed due to the product being within the same class
         // Get stored cart, or set as empty array
         const cart = getLocalStorage("media-cart") || [];
+        const list = [];
 
-        cart.push(getParam("id")); //changed this to this.product due to it not working WITHOUT this change
+        const mediaId = getParam("id");
+        const imagePath = ids("poster").src;
+        const title = ids("MovieTitle").textContent
+
+        cart.push({ id: mediaId, image: imagePath, name: title });
 
         setLocalStorage("media-cart", cart);
     }

@@ -8,8 +8,8 @@ function cartItemTemplate(item) {
 
     const newItem = `
     <div class="media-card">
-          <img src="/images/media-marathon.webp" alt="test-image" />
-          <p class="desc">tester text</p>
+          <img src="${item.image}" alt="${item.name}" />
+          <p class="desc">${item.name}</p>
           ${itemDelete}
     </div>`;
 
