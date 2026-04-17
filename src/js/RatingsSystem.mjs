@@ -6,8 +6,6 @@ export default class RatingSystem {
         this.listElement = listElement;
     }
 
-
-
     async renderDetails(productList) {
 
         if (!getLocalStorage("comments-section-list")) {
@@ -20,6 +18,8 @@ export default class RatingSystem {
 
         const marathon = new ExternalRecords();
         const tvList = await marathon.getMediaData();
+
+        const tvMazes = getLocalStorage("tvmaze_request")
         const mediaIdDiscoverList = getLocalStorage("tmdb_request");
         const mediaIdPlayList = getLocalStorage("tmdb_play_request");
         const mediaIdPopList = getLocalStorage("tmdb_pop_request");
@@ -87,6 +87,8 @@ export default class RatingSystem {
             renderListWithTemplate(this.displayComments, ids("commented"), getLocalStorage("comments-section-list"), "beforeend");
             // this uses the function from utils to get the template cards generated
         }
+
+        ids("addMedia").addEventListener("click", () => { this.addProductToCart() });
     }
 
 
@@ -107,7 +109,7 @@ export default class RatingSystem {
             <img src="${data.image.medium}" alt="${data.name}">
             <div>
               <p id="MovieTitle">${data.name}</p>
-              <button class="add-movie">Add Media</button>
+              <button id="addMedia">Add Media</button>
               <div class="rating-type">
                 <p id="api_rating">${rating}</p>
               </div>
@@ -122,7 +124,7 @@ export default class RatingSystem {
             <img src="https://image.tmdb.org/t/p/w185${data.poster_path}" alt="${data.title}">
             <div>
               <p id="MovieTitle">${data.title}</p>
-              <button class="add-movie">Add Media</button>
+              <button id="addMedia">Add Media</button>
               <div class="rating-type">
                 <p id="api_rating">${data.vote_average.toFixed(1)}</p>
               </div>
@@ -255,7 +257,7 @@ export default class RatingSystem {
     }
 
 
-    testComment() {
+    testComment() { //used to setup a default amount of comments for viewing
         let comments = []; // set the variable to a null list
         setLocalStorage("comments-section-list", comments) // set localStorage to null
 
@@ -271,6 +273,15 @@ export default class RatingSystem {
 
             setLocalStorage("comments-section-list", comments) // for the purposes of testing
         }
+    }
+
+    addProductToCart() {// the parameter above is no longer needed due to the product being within the same class
+        // Get stored cart, or set as empty array
+        const cart = getLocalStorage("media-cart") || [];
+
+        cart.push(getParam("id")); //changed this to this.product due to it not working WITHOUT this change
+
+        setLocalStorage("media-cart", cart);
     }
 
 }
