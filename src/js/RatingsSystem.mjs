@@ -107,7 +107,7 @@ export default class RatingSystem {
 
             htmlContent = `          <div>
             <img id="poster" src="${data.image.medium}" alt="${data.name}">
-            <div>
+            <div id="mediaPanel">
               <p id="MovieTitle">${data.name}</p>
               <button id="addMedia">Add Media</button>
               <div class="rating-type">
@@ -122,7 +122,7 @@ export default class RatingSystem {
 
             htmlContent = `          <div>
             <img id="poster" src="https://image.tmdb.org/t/p/w185${data.poster_path}" alt="${data.title}">
-            <div>
+            <div id="mediaPanel">
               <p id="MovieTitle">${data.title}</p>
               <button id="addMedia">Add Media</button>
               <div class="rating-type">

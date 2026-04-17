@@ -114,23 +114,30 @@
     display: flex;
     flex-direction: column;
     background-color: #012e5c;
-    width: 50%;
+    width: 80%;
 
     & > div {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       margin: 2% 25%;
     }
 
+    & div > img {
+      margin-bottom: 2%;
+    }
+
     & div > div {
-      margin-left: 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       width: 80%;
     }
 
     & > p {
-      margin: 2% 25%;
+      display: flex;
+      justify-content: center;
+      margin: 2% 20%;
       text-align: left;
-      width: fit-content;
       background-color: #003b75;
     }
   }
@@ -155,7 +162,7 @@
     margin-bottom: 1%;
 
     & img {
-      width: 5%;
+      width: 7%;
       height: auto;
       margin-right: 1%;
     }
@@ -172,7 +179,7 @@
       display: flex;
       flex-direction: column;
       background-color: #003b75;
-      width: 50%;
+      width: 90%;
     }
   }
 
@@ -182,6 +189,8 @@
   }
 
   #commented {
+    display: flex;
+    flex-direction: column;
     background-color: #141f38;
     margin: 2%;
     height: 350px;
