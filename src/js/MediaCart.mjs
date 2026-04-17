@@ -1,10 +1,10 @@
-import { LoadHeaderFooter, setLocalStorage, getLocalStorage, renderListWithTemplate, qs } from "./utils.mjs";
+import { LoadHeaderFooter, setLocalStorage, getLocalStorage, renderListWithTemplate, qs, ids } from "./utils.mjs";
 
 function cartItemTemplate(item) {
 
 
 
-    const itemDelete = `<button class="delete-item" id="${item.Id}">X</button>`;
+    const itemDelete = `<button class="delete-item" id="${item.id}">X</button>`;
 
     const newItem = `
     <div class="media-card">
@@ -47,22 +47,23 @@ export default class MediaCart {
     }
 
     removeItemById(id, btn) {
+        ids(`${id}`).style.backgroundColor = "#002951";
         const cartItems = getLocalStorage("media-cart") || []; // collects product cart from local storage
 
-        let idx = cartItems.findIndex(i => String(i.Id) === String(id)); // finds first instance of product id and it's index value
+        let idx = cartItems.findIndex(i => String(i.id) === String(id)); // finds first instance of product id and it's index value
 
         // console.log(idx)
+        setTimeout(() => {
+            if (idx !== -1) { // if idx did not return an error (-1) then:
+                cartItems.splice(idx, 1); // cut the item from the index point
+                const dump = btn.closest('.media-card'); // this selects the parent element of the button [the li element of the card]
+                if (dump) dump.remove(); // this removes the product card that was selected [closest to the current button]
 
-        if (idx !== -1) { // if idx did not return an error (-1) then:
-            cartItems.splice(idx, 1); // cut the item from the index point
-            const dump = btn.closest('.media-card'); // this selects the parent element of the button [the li element of the card]
-            if (dump) dump.remove(); // this removes the product card that was selected [closest to the current button]
-
-            setLocalStorage("media-cart", cartItems); // saves changes to cart
-            this.renderCartContents(); // re-renders cart contents
-            LoadHeaderFooter(); // re-renders the header and footer so that items in cart number update dynamically
-        }
-
+                setLocalStorage("media-cart", cartItems); // saves changes to cart
+                this.renderCartContents(); // re-renders cart contents
+                LoadHeaderFooter(); // re-renders the header and footer so that items in cart number update dynamically
+            }
+        }, 200);
 
     }
 

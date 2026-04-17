@@ -277,6 +277,8 @@ export default class RatingSystem {
 
     addProductToCart() {// the parameter above is no longer needed due to the product being within the same class
         // Get stored cart, or set as empty array
+        ids("addMedia").style.backgroundColor = "#002951";
+
         const cart = getLocalStorage("media-cart") || [];
         const list = [];
 
@@ -287,6 +289,11 @@ export default class RatingSystem {
         cart.push({ id: mediaId, image: imagePath, name: title });
 
         setLocalStorage("media-cart", cart);
+
+        setTimeout(() => {
+            ids("addMedia").style.backgroundColor = "#065fbe";
+        }, 200);
+
     }
 
 }
